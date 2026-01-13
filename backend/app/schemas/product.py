@@ -35,7 +35,7 @@ class ProductResponse(BaseModel):
                                        description="Product category details")
     
     class Config:
-        form_attitude = True
+        from_attributes = True
         
 class ProductListResponse(BaseModel):
     products: list[ProductResponse]
