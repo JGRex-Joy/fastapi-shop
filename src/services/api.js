@@ -8,7 +8,7 @@
 import axios from 'axios'
 
 // Базовый URL API из переменных окружения или значение по умолчанию
-const API_BASE_URL = 'https://fastapi-shop-lviw.onrender.com/api'
+const API_BASE_URL = 'https://fastapi-shop-lviw.onrender.com'
 
 // Создаем экземпляр axios с настройками по умолчанию
 const apiClient = axios.create({
