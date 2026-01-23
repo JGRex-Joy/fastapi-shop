@@ -13,9 +13,9 @@
         <p class="text-gray-500">Discover our amazing products</p>
       </div>
 
-      <div class="flex gap-8">
+      <div class="flex flex-col lg:flex-row gap-8">
         <!-- Боковая панель с фильтром -->
-        <aside class="w-64 flex-shrink-0">
+        <aside class="w-full lg:w-64 flex-shrink-0">
           <CategoryFilter />
         </aside>
 
@@ -54,7 +54,7 @@
           <!-- Список товаров -->
           <div
             v-else-if="productsStore.filteredProducts.length > 0"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             <ProductCard
               v-for="product in productsStore.filteredProducts"
