@@ -1,3 +1,8 @@
+<!--
+  Компонент шапки сайта.
+  Содержит логотип, навигацию и счетчик товаров в корзине.
+-->
+
 <template>
   <header class="bg-white border-b-2 border-black sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4">
