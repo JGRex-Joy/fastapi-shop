@@ -58,13 +58,6 @@ def create_products(db, categories):
     products_data = [
         # Electronics
         {
-            "name": "Wireless Headphones",
-            "description": "High-quality wireless headphones with noise cancellation. Perfect for music lovers and professionals. Battery life up to 30 hours.",
-            "price": 299.99,
-            "category_id": categories["electronics"].id,
-            "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400"
-        },
-        {
             "name": "Smart Watch Pro",
             "description": "Advanced smartwatch with fitness tracking, heart rate monitor, and GPS. Water resistant up to 50m. Compatible with iOS and Android.",
             "price": 399.99,
@@ -72,28 +65,35 @@ def create_products(db, categories):
             "image_url": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
         },
         {
-            "name": "Laptop Stand",
-            "description": "Ergonomic aluminum laptop stand. Adjustable height and angle. Improves posture and reduces neck strain. Compatible with all laptop sizes.",
+            "name": "Wireless mouse",
+            "description": "Ergonomic wireless mouse. Perfect for all kind of work.",
             "price": 49.99,
             "category_id": categories["electronics"].id,
             "image_url": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400"
         },
         {
-            "name": "USB-C Hub",
-            "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader. Fast data transfer and 4K video output. Compact design perfect for travel.",
+            "name": "Wireless Keyboard",
+            "description": "Compact wireless keyboard with mechanical switches. Long battery life and ergonomic design. Perfect for both work and gaming.",
             "price": 79.99,
             "category_id": categories["electronics"].id,
             "image_url": "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=400"
         },
         {
-            "name": "Wireless Keyboard",
-            "description": "Compact wireless keyboard with mechanical switches. Long battery life and ergonomic design. Perfect for both work and gaming.",
+            "name": "Wireless Headphones",
+            "description": "High-quality wireless headphones with noise cancellation. Perfect for music lovers and professionals. Battery life up to 30 hours.",
             "price": 89.99,
             "category_id": categories["electronics"].id,
             "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
         },
 
         # Clothing
+        {
+            "name": "A black leather biker jacket",
+            "description": "A classic black leather biker jacket with an asymmetric zipper and clean, sharp details. Stylish, bold, and timeless.",
+            "price": 299.99,
+            "category_id": categories["clothing"].id,
+            "image_url": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400"
+        },
         {
             "name": "Running Shoes",
             "description": "Comfortable running shoes with excellent cushioning. Breathable mesh upper and durable rubber sole. Perfect for jogging and gym workouts.",
