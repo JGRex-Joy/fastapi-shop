@@ -1,9 +1,14 @@
-# backend/seed_data.py
 """
 Скрипт для заполнения базы данных тестовыми данными.
 Создает категории и товары для демонстрации работы приложения.
 Использует placeholder изображения с unsplash.com.
 """
+
+import sys
+from pathlib import Path
+
+# Добавляем корневую директорию в путь для импорта
+sys.path.insert(0, str(Path(__file__).parent))
 
 from app.db import SessionLocal, init_db
 from app.models.category import Category
@@ -194,6 +199,7 @@ def seed_database():
     except Exception as e:
         print(f"❌ Error during seeding: {e}")
         db.rollback()
+        raise
     finally:
         db.close()
 
