@@ -8,7 +8,7 @@
 import axios from 'axios'
 
 // Базовый URL API из переменных окружения или значение по умолчанию
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
+const API_BASE_URL = 'https://fastapi-shop-lviw.onrender.com/api'
 
 // Создаем экземпляр axios с настройками по умолчанию
 const apiClient = axios.create({
@@ -32,7 +32,14 @@ apiClient.interceptors.request.use(
 )
 
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log('API Response:', {
+      url: response.config.url,
+      status: response.status,
+      data: response.data,
+    })
+    return response
+  },
   (error) => {
     console.error('API Error:', {
       url: error.config?.url,
@@ -96,17 +103,15 @@ export const categoriesAPI = {
 export const cartAPI = {
   /**
    * Добавить товар в корзину
+   * @param {Object} requestData - Объект с product_id, quantity и cart
    */
-  addItem(item, cartData) {
-    return apiClient.post('/api/cart/add', {
-      product_id: item.product_id,
-      quantity: item.quantity,
-      cart: cartData,
-    })
+  addItem(requestData) {
+    return apiClient.post('/api/cart/add', requestData)
   },
 
   /**
    * Получить содержимое корзины
+   * @param {Object} cartData - Объект корзины {product_id: quantity}
    */
   getCart(cartData) {
     return apiClient.post('/api/cart', cartData)
@@ -114,24 +119,20 @@ export const cartAPI = {
 
   /**
    * Обновить количество товара
-   * ИСПРАВЛЕНО: Точное соответствие бэкенду
+   * @param {Object} requestData - Объект с product_id, quantity и cart
    */
-  updateItem(item, cartData) {
-    return apiClient.put('/api/cart/update', {
-      product_id: item.product_id,
-      quantity: item.quantity,
-      cart: cartData,
-    })
+  updateItem(requestData) {
+    return apiClient.put('/api/cart/update', requestData)
   },
 
   /**
    * Удалить товар из корзины
+   * @param {number} productId - ID товара для удаления
+   * @param {Object} requestData - Объект с cart
    */
-  removeItem(productId, cartData) {
+  removeItem(productId, requestData) {
     return apiClient.delete(`/api/cart/remove/${productId}`, {
-      data: {
-        cart: cartData,
-      },
+      data: requestData,
     })
   },
 }

@@ -2,7 +2,6 @@
 /**
  * Pinia store для управления корзиной покупок.
  * Хранит состояние корзины в localStorage и синхронизирует с backend.
- * Следует принципу Single Responsibility - отвечает только за логику корзины.
  */
 
 import { defineStore } from 'pinia'
@@ -39,6 +38,8 @@ export const useCartStore = defineStore('cart', () => {
     if (savedCart) {
       try {
         cartItems.value = JSON.parse(savedCart)
+        // Загружаем детали корзины при инициализации
+        fetchCartDetails()
       } catch (e) {
         console.error('Error parsing cart from localStorage:', e)
         cartItems.value = {}
@@ -58,18 +59,36 @@ export const useCartStore = defineStore('cart', () => {
    */
   async function addToCart(productId, quantity = 1) {
     try {
-      const item = {
+      loading.value = true
+
+      // Формат данных согласно вашему backend API
+      const requestData = {
         product_id: productId,
         quantity: quantity,
+        cart: { ...cartItems.value } // Передаем копию текущей корзины
       }
-      const response = await cartAPI.addItem(item, cartItems.value)
-      cartItems.value = response.data.cart
-      saveCart()
-      await fetchCartDetails()
-      return true
+
+      console.log('Adding to cart:', requestData)
+
+      const response = await cartAPI.addItem(requestData)
+
+      console.log('Cart response:', response.data)
+
+      // Backend возвращает { cart: {...} }
+      if (response.data && response.data.cart) {
+        cartItems.value = response.data.cart
+        saveCart()
+        await fetchCartDetails()
+        return true
+      }
+
+      return false
     } catch (err) {
       console.error('Error adding to cart:', err)
+      console.error('Error details:', err.response?.data)
       return false
+    } finally {
+      loading.value = false
     }
   }
 
@@ -84,10 +103,12 @@ export const useCartStore = defineStore('cart', () => {
 
     loading.value = true
     try {
+      // Backend ожидает корзину в теле POST запроса
       const response = await cartAPI.getCart(cartItems.value)
       cartDetails.value = response.data
     } catch (err) {
       console.error('Error fetching cart details:', err)
+      console.error('Error details:', err.response?.data)
     } finally {
       loading.value = false
     }
@@ -102,18 +123,30 @@ export const useCartStore = defineStore('cart', () => {
     }
 
     try {
-      const item = {
+      loading.value = true
+
+      const requestData = {
         product_id: productId,
         quantity: quantity,
+        cart: cartItems.value
       }
-      const response = await cartAPI.updateItem(item, cartItems.value)
-      cartItems.value = response.data.cart
-      saveCart()
-      await fetchCartDetails()
-      return true
+
+      const response = await cartAPI.updateItem(requestData)
+
+      if (response.data && response.data.cart) {
+        cartItems.value = response.data.cart
+        saveCart()
+        await fetchCartDetails()
+        return true
+      }
+
+      return false
     } catch (err) {
       console.error('Error updating cart:', err)
+      console.error('Error details:', err.response?.data)
       return false
+    } finally {
+      loading.value = false
     }
   }
 
@@ -122,14 +155,28 @@ export const useCartStore = defineStore('cart', () => {
    */
   async function removeFromCart(productId) {
     try {
-      const response = await cartAPI.removeItem(productId, cartItems.value)
-      cartItems.value = response.data.cart
-      saveCart()
-      await fetchCartDetails()
-      return true
+      loading.value = true
+
+      const requestData = {
+        cart: cartItems.value
+      }
+
+      const response = await cartAPI.removeItem(productId, requestData)
+
+      if (response.data && response.data.cart) {
+        cartItems.value = response.data.cart
+        saveCart()
+        await fetchCartDetails()
+        return true
+      }
+
+      return false
     } catch (err) {
       console.error('Error removing from cart:', err)
+      console.error('Error details:', err.response?.data)
       return false
+    } finally {
+      loading.value = false
     }
   }
 
