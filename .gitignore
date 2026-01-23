@@ -1,0 +1,54 @@
+# Python
+# Byte-code files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.eggs/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Distribution / build files
+dist/
+build/
+*.egg
+*.whl
+
+# IDE-specific files (optional, can be in a global gitignore)
+# VS Code
+.vscode/
+# PyCharm/JetBrains
+.idea/
+
+# Testing and coverage
+.pytest_cache/
+cover/
+.coverage
+
+# MyPy, Pyre, etc
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Jupyter Notebook specific files
+.ipynb_checkpoints
+
+# Miscellaneous
+celerybeat-schedule
+celerybeat.pid
+*.rdb
+*.aof
+*.pid
+
+# Operating System files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# SQLite DB
+.db
