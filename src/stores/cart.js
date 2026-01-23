@@ -1,9 +1,3 @@
-// frontend/src/stores/cart.js
-/**
- * Pinia store для управления корзиной покупок.
- * Хранит состояние корзины в localStorage и синхронизирует с backend.
- */
-
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { cartAPI } from '@/services/api'
@@ -29,16 +23,12 @@ export const useCartStore = defineStore('cart', () => {
     return Object.keys(cartItems.value).length > 0
   })
 
-  // Actions
-  /**
-   * Инициализировать корзину из localStorage
-   */
+
   function initCart() {
     const savedCart = localStorage.getItem(CART_STORAGE_KEY)
     if (savedCart) {
       try {
         cartItems.value = JSON.parse(savedCart)
-        // Загружаем детали корзины при инициализации
         fetchCartDetails()
       } catch (e) {
         console.error('Error parsing cart from localStorage:', e)
@@ -47,9 +37,6 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  /**
-   * Сохранить корзину в localStorage
-   */
   function saveCart() {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems.value))
   }

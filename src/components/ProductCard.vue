@@ -1,9 +1,3 @@
-<!-- frontend/src/components/ProductCard.vue -->
-<!--
-  Компонент карточки товара для отображения в каталоге.
-  Показывает основную информацию о товаре и кнопку добавления в корзину.
--->
-
 <template>
   <div
     class="bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:border-black transition-all duration-300 hover:shadow-lg"

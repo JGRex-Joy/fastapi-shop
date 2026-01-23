@@ -1,9 +1,3 @@
-<!-- frontend/src/components/CategoryFilter.vue -->
-<!--
-  Компонент фильтрации товаров по категориям.
-  Отображает список категорий с возможностью выбора для фильтрации.
--->
-
 <template>
   <div class="bg-white border-2 border-gray-200 rounded-lg p-6">
     <h2 class="text-2xl font-bold text-black mb-6">Categories</h2>

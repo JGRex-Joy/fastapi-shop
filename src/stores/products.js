@@ -1,9 +1,3 @@
-// frontend/src/stores/products.js
-/**
- * Pinia store для управления состоянием товаров.
- * Хранит список товаров, информацию о фильтрации и состояние загрузки.
- */
-
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { productsAPI, categoriesAPI } from '@/services/api'

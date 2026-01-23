@@ -1,9 +1,3 @@
-<!-- frontend/src/components/CartItem.vue -->
-<!--
-  Компонент элемента корзины.
-  Отображает товар в корзине с возможностью изменения количества и удаления.
--->
-
 <template>
   <div
     class="bg-white border-2 border-gray-100 rounded-none p-6 shadow-sm hover:border-gray-300 transition-colors"
