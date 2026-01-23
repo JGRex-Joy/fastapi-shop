@@ -1,16 +1,7 @@
-// frontend/src/services/api.js
-/**
- * API сервис для взаимодействия с backend.
- * Централизует все HTTP запросы к FastAPI серверу.
- * Использует axios для выполнения запросов.
- */
-
 import axios from 'axios'
 
-// Базовый URL API из переменных окружения или значение по умолчанию
-const API_BASE_URL = 'https://fastapi-shop-b6id.onrender.com'
+const API_BASE_URL = 'https://fastapi-shop-v4fl.onrender.com'
 
-// Создаем экземпляр axios с настройками по умолчанию
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -18,7 +9,6 @@ const apiClient = axios.create({
   },
 })
 
-// Добавляем interceptor для логирования (поможет в отладке)
 apiClient.interceptors.request.use(
   (config) => {
     console.log('API Request:', {
@@ -52,54 +42,33 @@ apiClient.interceptors.response.use(
   },
 )
 
-/**
- * API методы для работы с товарами
- */
 export const productsAPI = {
-  /**
-   * Получить все товары
-   */
   getAll() {
     return apiClient.get('/api/products')
   },
 
-  /**
-   * Получить товар по ID
-   */
+
   getById(id) {
     return apiClient.get(`/api/products/${id}`)
   },
 
-  /**
-   * Получить товары по категории
-   */
   getByCategory(categoryId) {
     return apiClient.get(`/api/products/category/${categoryId}`)
   },
 }
 
-/**
- * API методы для работы с категориями
- */
+
 export const categoriesAPI = {
-  /**
-   * Получить все категории
-   */
   getAll() {
     return apiClient.get('/api/categories')
   },
 
-  /**
-   * Получить категорию по ID
-   */
   getById(id) {
     return apiClient.get(`/api/categories/${id}`)
   },
 }
 
-/**
- * API методы для работы с корзиной
- */
+
 export const cartAPI = {
   /**
    * Добавить товар в корзину
@@ -111,7 +80,7 @@ export const cartAPI = {
 
   /**
    * Получить содержимое корзины
-   * @param {Object} cartData - Объект корзины {product_id: quantity}
+   * @param {Object} cartData
    */
   getCart(cartData) {
     return apiClient.post('/api/cart', cartData)
