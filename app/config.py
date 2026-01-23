@@ -7,9 +7,6 @@ class Settings(BaseSettings):
     database_url: str = os.getenv("DATABASE_URL")
     cors_origins: list = ["*"]
     
-    static_dir: str = "static"
-    images_dir: str = "static/images"
-    
     class Config:
         env_file = ".env"
 
