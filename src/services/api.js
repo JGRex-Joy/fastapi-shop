@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'https://fastapi-shop-v4fl.onrender.com'
+const API_BASE_URL = 'https://fastapi-shop-egca.onrender.com'
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,

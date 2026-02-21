@@ -1,9 +1,3 @@
-// frontend/src/router/index.js
-/**
- * Конфигурация Vue Router.
- * Определяет маршруты приложения и связывает их с компонентами.
- */
-
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/views/HomePage.vue'
 import ProductDetailPage from '@/views/ProductDetailPage.vue'
